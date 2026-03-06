@@ -23,3 +23,11 @@ Follow these steps to locate and place the Lua 5.1 block:
 2. <img width="682" height="512" alt="image" src="https://github.com/user-attachments/assets/d66abc3d-2ea5-4fdc-8a77-05ae097dda24" />
 3. <img width="285" height="258" alt="image" src="https://github.com/user-attachments/assets/0d1fde14-a747-4cf1-869c-6c5a2498ef4f" />
 4. <img width="279" height="241" alt="image" src="https://github.com/user-attachments/assets/f152bf95-3b89-4871-a64b-174809866a18" />
+
+This is what the block looks like.
+<img width="372" height="356" alt="image" src="https://github.com/user-attachments/assets/966dd3fc-376f-4af1-a446-050eea1858ff" />
+
+To edit the code, click on the block.
+
+Once you've clicked on it, you should see the following:
+<img width="2050" height="1046" alt="image" src="https://github.com/user-attachments/assets/b3daa452-3f77-4947-ba34-19ff471760f7" />
