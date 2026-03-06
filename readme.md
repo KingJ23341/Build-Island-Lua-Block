@@ -249,7 +249,6 @@ Yes. Most standard Lua 5.1 libraries like math, string, and table are fully supp
 </details>
 
 ---
----
 <details>
 <summary>Can I communicate with other Program Blocks?</summary>
 Yes! The primary way to communicate between blocks is through **I/O Ports**. You can set a value on an output port in one block and read it from an input port in another, effectively creating a "wired" network for complex systems.
@@ -257,3 +256,38 @@ Yes! The primary way to communicate between blocks is through **I/O Ports**. You
 
 ## Tutorials
 Below are numerous tutorials, as well as share codes of working programs for you to try out, with step-by-step explanations if you wanted to learn how they worked.
+
+<details>
+	<summary>Proximity Prompt Jump Power Increaser</summary>
+	
+Description: Increase the player's jump power by +25 when they trigger a proximity prompt.
+
+Instructions
+To create, insert an Interactive Trigger into workspace, then a Lua 5.1 Compiler.
+
+Paste this code into the compiler:
+```lua
+local promptPart = workspace.InteractivePrompt
+local prompt = promptPart.ProximityPrompt
+-- By default, proximity parts will have the Object Text say From [your name], and action text be "Interactive", however, we can change it using some code.
+
+prompt.ActionText = "+25 Jump Power"
+prompt.ObjectText = "Jump Higher"
+
+prompt.Triggered:Connect(function(trigger)
+trigger.Character.Humanoid.JumpPower = trigger.Character.Humanoid.JumpPower + 25
+-- We do need to re-assign the action and object text here since the game will reset it back to the default.
+prompt.ActionText = "+25 Jump Power"
+prompt.ObjectText = "Jump Higher"
+-- For Debugging
+print("Added 25 jump power to "..trigger.Name..". They now have "..trigger.Character.Humanoid.JumpPower.." jump power.")
+end)
+```
+
+Save Code: 6C9B2234C234C2702F29341C5557AE810224A470C86C2F777B6AF166C03889B1
+
+Images:
+<img width="203" height="216" alt="image" src="https://github.com/user-attachments/assets/c54febe7-41eb-4ea1-89fb-308c79102cc3" />
+<img width="434" height="277" alt="image" src="https://github.com/user-attachments/assets/72e84e45-140e-46f7-b19f-683d5c3765b8" />
+
+</details>
