@@ -31,3 +31,107 @@ To edit the code, click on the block.
 
 Once you've clicked on it, you should see the following:
 <img width="2050" height="1046" alt="image" src="https://github.com/user-attachments/assets/b3daa452-3f77-4947-ba34-19ff471760f7" />
+
+This is the default code inside of the Lua 5.1 Block.
+```lua
+--- PLC8IO: The Buildverse Group
+
+--- ////////// NOTICE: Any vulnerabilities or exploits discovered should be immediately reported to staff.
+--- //////////         failure to do so will result in a ban regardless of if the exploit was used or not.
+--- ////////// NOTICE: Any apis are prone to change at any point without backwards compatability.
+
+-- The text label that text is written to can be modified only with trust elevation
+-- so the code below would error for regular players, don't try to do this.
+--scriptroot.SurfaceGui.Frame.TextLabel.BackgroundColor3 = Color3.fromRGB(27, 41, 170)
+--scriptroot.SurfaceGui.Frame.TextLabel.TextColor3 = Color3.new(1, 1, 1)
+
+print("Starting the sample program")
+print("This runs lua 5.1, not roblox luau. Some things may be different but they mostly similar")
+
+-- Access digital ports (boolean true/false on/off)
+local inputPort1 = io.port.input.new(1)
+local outputPort1 = io.port.output.new(1)
+
+-- Make sure the ports are boolean (on / off red wiring)
+inputPort1.Type = "boolean"
+outputPort1.Type = "boolean"
+
+-- Test to show that some things are restricted
+task.spawn(function()
+	
+	-- Users with trust elevation have less restrictions, so the code below to change some things
+	-- would have ran. We dont want to do anything to the game so dont run it.
+	if trustelevation() ~= 0 then
+		print("Running as an elevated script, the code below would have ran normally.")
+		return
+	end
+
+	-- Test to ensure that access to instances is restricted
+	print("Testing sandbox game.name")
+	game.Name = "ChangeInName"
+	print("Testing sandbox game.players.name")
+	game.Players.Name = "ChangeInName"
+	error("This should error")
+	print("This should not execute after an error")
+
+	local i = 0
+	while i <= 10 do
+		i = i + 1
+		local v = inputPort1:GetValue()
+		print('input1switch', i, v)
+		if v then
+			outputPort1:SetValue(not outputPort1:GetValue())
+		end
+	end
+end)
+
+task.spawn(function()
+	
+	-- This script runs inside of a virtual environment, so there is no "script".
+	-- Instead, access to the part itself is provided via `scriptroot`
+	local myPart = scriptroot
+	
+	-- You should be able to modify your own parts
+	myPart.BrickColor = BrickColor.Random()
+	
+	if trustelevation() ~= 0 then
+		return "Running as an elevated script, the code below would have ran normally."
+	end
+	
+	-- You should not be able to create anything new
+	-- Nothing after Instance.new will run. it will error right then and there.
+	local badInstance = Instance.new("Part", workspace)
+	badInstance.Name = "I'll never exist"
+	print("I'll never be seen")
+	
+end)
+
+-- "string", "boolean", and "number" types are supported on ports
+local inputNumberPort = io.port.input.new(8)
+local outputNumberPort = io.port.output.new(8)
+
+inputNumberPort.Type = "number"
+outputNumberPort.Type = "number"
+
+inputNumberPort.Changed:Connect(function()
+	print("The input number is now", inputNumberPort.Value)
+	outputNumberPort.Value = inputNumberPort.Value * 2467 * 2
+end)
+
+outputNumberPort.Changed:Connect(function()
+	print("The number output was set to", outputNumberPort.Value)
+end)
+
+inputPort1.Changed:Connect(function()
+	print("Input port 1 changed. New value: "..tostring(inputPort1:GetValue()))
+	print("Setting output port 1 to inverse")
+	outputPort1:SetValue(not inputPort1:GetValue())
+end)
+
+outputPort1.Changed:Connect(function()
+	print("Output port 1 changed. New value: "..tostring(outputPort1:GetValue()))
+end)
+
+```
+
+This code checks the Elevation requirements, ensuring that you meet the required trust elevation to run core functions, and also ensures that you cannot run specific functions that could potentially be abused.
