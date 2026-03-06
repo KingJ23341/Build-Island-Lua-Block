@@ -134,4 +134,25 @@ end)
 
 ```
 
-This code checks the Elevation requirements, ensuring that you meet the required trust elevation to run core functions, and also ensures that you cannot run specific functions that could potentially be abused.
+### Code Breakdown
+
+This script serves as a technical template for **Build Island Lua 5.1**, demonstrating how to interact with the environment while respecting its security "sandbox."
+
+---
+
+#### 1. Port Logic (I/O)
+The script manages digital and analog "wires" to connect code to build components:
+* **Boolean (Port 1):** Handles **On/Off** signals. It uses `.Changed` to automatically flip the output when the input toggles.
+* **Number (Port 8):** Processes numerical data. It multiplies an input by a constant ($2467 \times 2$) and sends the result to an output.
+
+#### 2. Sandbox & Security
+To maintain game stability, the environment enforces strict safety limits:
+* **Instance Protection:** Blocks `Instance.new` for regular players to prevent unauthorized spawning.
+* **Global Lockdown:** Prevents scripts from modifying core properties like `game.Name` or `game.Players`.
+* **Trust Elevation:** Uses `trustelevation()` to skip restricted UI or global code if the user lacks permissions.
+
+#### 3. Key Differences
+* **`scriptroot`:** Use this global to reference the part running the code; the standard `script` global does not exist.
+* **Efficiency:** Uses **Event-Driven** programming (`:Connect`) instead of loops to ensure the code only runs when values update, preventing lag.
+
+---
