@@ -254,6 +254,12 @@ Yes. Most standard Lua 5.1 libraries like math, string, and table are fully supp
 Yes! The primary way to communicate between blocks is through **I/O Ports**. You can set a value on an output port in one block and read it from an input port in another, effectively creating a "wired" network for complex systems.
 </details>
 
+---
+<details>
+	<summary>When I try to place it, it prompts me to buy a game pass.</summary>
+	In order to use the Compiler in Build Island, you do need to own the [Lua 5.1 Compiler game pass](https://www.roblox.com/game-pass/1405127748/Script-Executor-Block).
+</details>
+
 ## Tutorials
 Below are numerous tutorials, as well as share codes of working programs for you to try out, with step-by-step explanations if you wanted to learn how they worked.
 
