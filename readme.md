@@ -156,3 +156,104 @@ To maintain game stability, the environment enforces strict safety limits:
 * **Efficiency:** Uses **Event-Driven** programming (`:Connect`) instead of loops to ensure the code only runs when values update, preventing lag.
 
 ---
+
+
+## What can you do with the Lua 5.1 Compiler BLock?
+You can do a variety of different things, here's a brief FAQ of things you can do with the Lua 5.1 Compiler Block.
+
+<details>
+	<summary>Can I insert a part?</summary>
+	As of March 6th, you are **not** able to insert a part using the Lua 5.1 Compiler, as it requires Trust Elevation.
+</details>
+
+---
+<details>
+	<summary>Can I clone a part?</summary>
+	As of March 6th, you are **not** able to clone parts using the Lua 5.1 Compiler, as it requires Trust Elevation.
+</details>
+
+---
+<details>
+	<summary>Can I change the name of a part?</summary>
+		As of March 6th, you are **not** able to change the name/rename parts using the Lua 5.1 Compiler, as it requires Trust Elevation.
+</details>
+
+---
+<details>
+	<summary>Can I do game:GetService()?</summary>
+		As of March 6th, you are **not** able to use game:GetService on the Lua 5.1 Compiler, since this is a Lua Sandbox, it does not run Roblox lua.
+</details>
+
+---
+<details>
+	<summary>Can I kick players?</summary>
+		As of March 6th, you are **not** able to kick a player from the game using the Lua 5.1 Compiler, as it requires Trust Elevation.
+</details>
+
+---
+<details>
+	<summary>Can I remove parts?</summary>
+	Yes! You **can** remove parts using the Compiler.
+	There are numerous ways to do this, such as...
+	- Setting the parent to nil
+	- Running Remove()
+	- Running Destroy()
+</details>
+
+---
+<details>
+	<summary>Can I run .Touched events?</summary>
+	Yes, you can run a .Touched event, and it works exactly how it would on Roblox!
+</details>
+
+---
+<details>
+	<summary>Can I run task.spawn()</summary>
+	Yes, you can run task.spawn(), and it works exactly how it would on Roblox.
+</details>
+
+---
+<details>
+<summary>How do I print messages to see if my code works?</summary>
+You can use the standard print() function. These messages will appear in the Output tab of the code editor window (shown in the "Picture Steps" section) or the F9 Developer Console.
+</details>
+
+---
+<details>
+<summary>Can I save data between game sessions?</summary>
+As of March 6th, local variables and port values are not persistent. If the server restarts or the block is reloaded, the data will reset to its default state.
+</details>
+
+---
+<details>
+<summary>Can I use 'Wait' or 'Delay'?</summary>
+Yes. You can use task.wait(n) to pause execution for a specific number of seconds. Avoid using the old wait() as task.wait() is more efficient for this environment.
+</details>
+
+---
+<details>
+<summary>Can I change the color or transparency of a part?</summary>
+Yes! Since you have access to scriptroot, you can modify physical properties of the block itself (like .Transparency, .Color, or .CanCollide) without needing Trust Elevation.
+</details>
+
+---
+<details>
+	<summary>When I go to save my build, does the code in the Compiler save?</summary>
+	Yes! The code will be saved, and will run and work 100% when loading it. Please do keep in mind that if a function is changed to require Trust Elevation, and you loa dyour build that uses that code, it will no-longer work.
+</details>
+
+---
+<details>
+<summary>Can I use standard Lua libraries like 'math' or 'string'?</summary>
+Yes. Most standard Lua 5.1 libraries like math, string, and table are fully supported for complex calculations and data management.
+</details>
+
+---
+---
+<details>
+<summary>Can I communicate with other Program Blocks?</summary>
+Yes! The primary way to communicate between blocks is through **I/O Ports**. You can set a value on an output port in one block and read it from an input port in another, effectively creating a "wired" network for complex systems.
+</details>
+
+## Tutorials
+Below are numerous tutorials, as well as share codes of working programs for you to try out, with step-by-step explanations if you wanted to learn how they worked.
